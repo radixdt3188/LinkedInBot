@@ -6,24 +6,27 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+        trim: true
     },
     password: {
         type: String,
-    },
-    googleId: {
-        type: String,
+        required: true
     },
     name: {
         type: String,
-        required: true,
+        required: true
+    },
+    googleId: {
+        type: String,
+        sparse: true
     },
     profilePicture: {
         type: String,
     },
     createdAt: {
         type: Date,
-        default: Date.now,
-    },
+        default: Date.now
+    }
 });
 
 userSchema.pre('save', async function (next) {
@@ -35,4 +38,4 @@ userSchema.pre('save', async function (next) {
     next();
 });
 
-module.exports = mongoose.model('User', userSchema); 
+module.exports = mongoose.model('Users', userSchema); 

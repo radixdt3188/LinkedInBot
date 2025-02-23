@@ -42,4 +42,20 @@ router.get('/google/callback',
   }
 );
 
+router.get('/test', async (req, res) => {
+    try {
+        // Try to count users
+        const count = await User.countDocuments();
+        res.json({ 
+            status: 'Database working!',
+            userCount: count 
+        });
+    } catch (error) {
+        res.status(500).json({ 
+            status: 'Database error',
+            error: error.message 
+        });
+    }
+});
+
 module.exports = router; 
